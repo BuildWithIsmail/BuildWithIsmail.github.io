@@ -4,34 +4,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BuildWithIsmail | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --bg-color: #050505;
+            --text-main: #ffffff;
+            --text-dim: #a1a1a1;
+            --accent: #007AFF;
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Framer-style soft glow */
+        .glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 122, 255, 0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .hero-content { text-align: center; }
+
+        h1 {
+            font-size: 3rem;
+            letter-spacing: -0.03em;
+            margin-bottom: 0;
+        }
+
+        .type-wrap {
+            font-size: 1.5rem;
+            color: var(--text-dim);
+            margin-top: 10px;
+            font-weight: 400;
+        }
+
+        #typewriter {
+            color: var(--text-main);
+            border-right: 2px solid var(--accent); /* The cursor */
+            padding-right: 5px;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+    </style>
 </head>
 <body>
-    <div class="background-glow"></div>
-    
-    <nav>
-        <div class="logo">BuildWithIsmail</div>
-        <div class="nav-links">
-            <a href="#">Work</a>
-            <a href="#">About</a>
-            <a href="#" class="btn-contact">Contact</a>
+
+    <div class="glow"></div>
+
+    <div class="hero-content">
+        <h1>Hi, I’m BuildWithIsmail</h1>
+        <div class="type-wrap">
+            I am a <span id="typewriter"></span>
         </div>
-    </nav>
+    </div>
 
-    <main class="hero">
-        <section class="hero-content">
-            <span class="badge">Available for projects</span>
-            <h1>Hi, I’m BuildWithIsmail</h1>
-            <h2 class="typewriter-container">
-                I am a <span id="typewriter" class="gradient-text"></span>
-            </h2>
-            <p>Crafting immersive digital experiences through code and motion.</p>
-            <div class="cta-group">
-                <button class="primary-btn">View My Work</button>
-            </div>
-        </section>
-    </main>
+    <script>
+        const textElement = document.getElementById('typewriter');
+        const words = ["Developer", "Ui/Ux Designer", "Graphic Designer", "Motion Designer"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
 
-    <script src="script.js"></script>
+        function type() {
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                textElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                textElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 150;
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                isDeleting = true;
+                typeSpeed = 2000; // Pause at end
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        // Start the effect
+        window.onload = type;
+    </script>
 </body>
 </html>
