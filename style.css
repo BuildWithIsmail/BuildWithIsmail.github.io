@@ -1,0 +1,87 @@
+/* style.css */
+:root {
+    --bg-color: #050505;
+    --text-main: #ffffff;
+    --text-dim: #a1a1a1;
+    --accent: #007AFF; /* Apple Blue */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    /* San Francisco Font Stack */
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+    overflow-x: hidden;
+}
+
+/* Cryptix-style Background Glow */
+.background-glow {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 122, 255, 0.15) 0%, rgba(5, 5, 5, 0) 70%);
+    z-index: -1;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 10%;
+    align-items: center;
+}
+
+.hero {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+}
+
+.typewriter-container {
+    font-size: 2.5rem;
+    font-weight: 600;
+    min-height: 1.2em;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, #fff, #a1a1a1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.badge {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: var(--text-dim);
+}
+
+.primary-btn {
+    margin-top: 30px;
+    padding: 12px 30px;
+    border-radius: 12px;
+    border: none;
+    background: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.primary-btn:hover {
+    transform: scale(1.05);
+}
