@@ -1,2 +1,4 @@
-# BuildWithIsmail.github.io
-This website represents my school project "Genius Hour." The website contains everything about me as people like to call it "Portfolio" this idea started when i saw many websites and coders who put there time and effort towards it.
+# Introduction 🧑‍💻
+Hi my name is Ismail im a 12 year old trying out to make a new website using code & github. This project started 2026 where my class introduced a new project for us to learn called **Genuis Hour** its where we wanted to do something for a long time but dont have the courage, time, energy to do it so this is my project creating a website using Github and Code. Some code languages i will be using are Html, Python or more. Enjoy learning about more about my project
+
+# Week 1 - </>
