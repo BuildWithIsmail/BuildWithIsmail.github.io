@@ -5,65 +5,135 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BuildWithIsmail | Portfolio</title>
     <style>
+        /* 1. THE FOUNDATION & APPLE FONT */
         :root {
-            --bg-color: #050505;
+            --bg-color: #030303; 
             --text-main: #ffffff;
             --text-dim: #a1a1a1;
-            --accent: #007AFF;
+            --accent: #007AFF; /* Apple Blue */
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
             margin: 0;
+            padding: 0;
             background-color: var(--bg-color);
             color: var(--text-main);
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+            /* Native Apple San Francisco stack */
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
+            position: relative;
         }
 
-        /* Framer-style soft glow */
-        .glow {
+        /* 2. SILKY BACKGROUND LAYERS (Framer/Cryptix Concept) */
+        .silky-background {
             position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(0, 122, 255, 0.1) 0%, transparent 70%);
-            z-index: -1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            /* Creates the mesh gradient colors */
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(210,100%,20%,0.4) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(255,100%,20%,0.3) 0, transparent 50%), 
+                radial-gradient(at 50% 100%, hsla(210,100%,15%,0.5) 0, transparent 50%);
+            filter: blur(100px); /* This makes the colors look like liquid silk */
+            animation: moveBackground 15s ease infinite alternate;
         }
 
-        .hero-content { text-align: center; }
+        /* The Grainy Pattern (Adds texture) */
+        .grain-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.05;
+            pointer-events: none;
+            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+        }
+
+        @keyframes moveBackground {
+            0% { transform: scale(1) translate(0,0); }
+            100% { transform: scale(1.1) translate(2%, 1%); }
+        }
+
+        /* 3. HERO CONTENT */
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            padding: 20px;
+        }
 
         h1 {
-            font-size: 3rem;
-            letter-spacing: -0.03em;
-            margin-bottom: 0;
+            font-size: clamp(2.5rem, 10vw, 4rem); /* Sizes down on mobile */
+            letter-spacing: -0.05em;
+            font-weight: 700;
+            margin: 0;
+            background: linear-gradient(180deg, #FFFFFF 0%, #A1A1A1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .type-wrap {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 5vw, 1.8rem);
             color: var(--text-dim);
-            margin-top: 10px;
+            margin-top: 20px;
             font-weight: 400;
+            letter-spacing: -0.02em;
         }
 
         #typewriter {
-            color: var(--text-main);
-            border-right: 2px solid var(--accent); /* The cursor */
-            padding-right: 5px;
-            animation: blink 0.7s infinite;
+            color: #fff;
+            font-weight: 600;
+            border-right: 3px solid var(--accent);
+            padding-right: 10px;
+            animation: blink 0.8s step-end infinite;
         }
 
         @keyframes blink {
-            50% { border-color: transparent; }
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent); }
         }
+
+        /* 4. NAVBAR (Optional extra touch) */
+        nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 40px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            font-size: 0.9rem;
+            z-index: 20;
+        }
+
+        .logo { letter-spacing: -0.05em; font-weight: 700; font-size: 1.2rem; }
     </style>
 </head>
 <body>
 
-    <div class="glow"></div>
+    <nav>
+        <div class="logo">BuildWithIsmail</div>
+    </nav>
 
+    <!-- Background Effects -->
+    <div class="silky-background"></div>
+    <div class="grain-overlay"></div>
+
+    <!-- Main Content -->
     <div class="hero-content">
         <h1>Hi, I’m BuildWithIsmail</h1>
         <div class="type-wrap">
@@ -71,6 +141,7 @@
         </div>
     </div>
 
+    <!-- 5. TYPEWRITER LOGIC -->
     <script>
         const textElement = document.getElementById('typewriter');
         const words = ["Developer", "Ui/Ux Designer", "Graphic Designer", "Motion Designer"];
@@ -81,6 +152,7 @@
         function type() {
             const currentWord = words[wordIndex];
             
+            // Handle text string
             if (isDeleting) {
                 textElement.textContent = currentWord.substring(0, charIndex - 1);
                 charIndex--;
@@ -89,11 +161,13 @@
                 charIndex++;
             }
 
-            let typeSpeed = isDeleting ? 50 : 150;
+            // Typing speed logic
+            let typeSpeed = isDeleting ? 60 : 150;
 
+            // Logic for switching words
             if (!isDeleting && charIndex === currentWord.length) {
                 isDeleting = true;
-                typeSpeed = 2000; // Pause at end
+                typeSpeed = 2500; // Pause at the end of the word
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 wordIndex = (wordIndex + 1) % words.length;
@@ -103,7 +177,7 @@
             setTimeout(type, typeSpeed);
         }
 
-        // Start the effect
+        // Run when page is ready
         window.onload = type;
     </script>
 </body>
