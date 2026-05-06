@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BuildWithIsmail | Polo Portfolio</title>
+    <title>BuildWithIsmail | Portfolio</title>
     <style>
         /* 1. FOUNDATION & APPLE FONT (SAN FRANCISCO) */
         :root {
             --bg-color: #030303; 
-            --nav-bg: #0A0A0A; /* Dark navigation bar */
+            --nav-bg: #0A0A0A; 
             --text-main: #FFFFFF;
             --text-dim: #888888;
-            --accent: #007AFF; /* Apple blue */
-            --nav-border: #1a1a1a; /* Very subtle border */
+            --accent: #007AFF; 
+            --nav-border: #1a1a1a; 
         }
 
         * { box-sizing: border-box; }
@@ -22,30 +22,28 @@
             padding: 0;
             background-color: var(--bg-color);
             color: var(--text-main);
-            /* Standard Apple Font Stack */
             font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
             height: 100vh;
             width: 100vw;
-            overflow: hidden; /* Lock the screen */
+            overflow: hidden; 
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
         }
 
-        /* 2. THE SILKY, BLURRED MESH BACKGROUND */
+        /* 2. THE SILKY BACKGROUND */
         .background-blob {
             position: absolute;
-            width: 700px;
-            height: 700px;
+            width: 800px;
+            height: 800px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(0, 122, 255, 0.15) 0%, rgba(255, 255, 255, 0) 60%);
-            filter: blur(120px);
+            background: radial-gradient(circle, rgba(0, 122, 255, 0.12) 0%, rgba(255, 255, 255, 0) 60%);
+            filter: blur(140px);
             z-index: -2;
-            animation: moveBlob 20s ease-infinite alternate;
+            animation: moveBlob 20s ease-in-out infinite alternate;
         }
 
-        /* Sublte Grain Pattern Overlay */
         .grain-overlay {
             position: absolute;
             top: 0;
@@ -59,11 +57,11 @@
         }
 
         @keyframes moveBlob {
-            0% { transform: scale(1) translate(-20%, -20%); }
-            100% { transform: scale(1.2) translate(10%, 10%); }
+            0% { transform: scale(1) translate(-10%, -10%); }
+            100% { transform: scale(1.2) translate(5%, 5%); }
         }
 
-        /* 3. POLO-STYLE NAVIGATION BAR (As seen in images) */
+        /* 3. MINIMAL NAVIGATION BAR */
         nav {
             position: absolute;
             top: 30px;
@@ -71,56 +69,25 @@
             transform: translateX(-50%);
             background-color: var(--nav-bg);
             border: 1px solid var(--nav-border);
-            padding: 12px 40px;
+            padding: 12px 30px;
             border-radius: 40px;
             display: flex;
             align-items: center;
             width: fit-content;
-            z-content: 20;
-            gap: 30px;
+            z-index: 20;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        /* Polo Logo with 'BuildWithIsmail' */
         .logo {
             display: flex;
             align-items: center;
             gap: 12px;
             font-weight: 700;
-            font-size: 1.3rem;
-            letter-spacing: -0.05em;
+            font-size: 1.1rem;
+            letter-spacing: -0.04em;
         }
 
-        .logo svg { width: 30px; height: 30px; fill: white; }
-
-        /* Nav Links */
-        .nav-links { display: flex; gap: 30px; list-style: none; margin: 0; padding: 0; }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-dim);
-            font-size: 0.95rem;
-            font-weight: 400;
-            transition: color 0.2s ease;
-        }
-
-        .nav-links a:hover { color: white; }
-
-        /* Polo-style 'Get for Free' Button */
-        .btn-free {
-            border: 1px solid #222;
-            padding: 10px 22px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(180deg, #1A1A1A 0%, #111 100%);
-        }
-
-        .btn-free:hover { border-color: #444; }
+        .logo svg { width: 24px; height: 24px; fill: white; }
 
         /* 4. HERO CONTENT & TYPEWRITER */
         .hero-content {
@@ -130,11 +97,10 @@
         }
 
         h1 {
-            font-size: clamp(2.5rem, 10vw, 4rem); 
+            font-size: clamp(2.5rem, 10vw, 4.5rem); 
             letter-spacing: -0.05em;
             font-weight: 700;
             margin: 0;
-            /* Apple-style gradient text */
             background: linear-gradient(180deg, #FFFFFF 0%, #A1A1A1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -160,88 +126,23 @@
             from, to { border-color: transparent }
             50% { border-color: var(--accent); }
         }
-
-        /* 5. FLOATING QUOTE CARDS (The secret touch!) */
-        .floating-card {
-            position: absolute;
-            background-color: #0d0d0d;
-            border: 1px solid #1a1a1a;
-            padding: 18px 24px;
-            border-radius: 12px;
-            color: var(--text-main);
-            font-size: 0.85rem;
-            width: 280px;
-            z-index: 5;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            transform: rotate(-3deg);
-        }
-
-        .floating-card .quote {
-            font-weight: 400;
-            margin-bottom: 8px;
-            line-height: 1.4;
-        }
-
-        .floating-card .name {
-            color: var(--text-dim);
-            font-weight: 500;
-            font-size: 0.8rem;
-        }
-
-        /* Positioning the cards based on the image layout */
-        .card-top-right {
-            top: 20%;
-            right: 15%;
-            transform: rotate(-3deg);
-        }
-
-        .card-bottom-right {
-            bottom: 25%;
-            right: 25%;
-            transform: rotate(5deg);
-        }
     </style>
 </head>
 <body>
 
-    <!-- 1. Silky background layers -->
     <div class="background-blob"></div>
     <div class="grain-overlay"></div>
 
-    <!-- 2. Nav bar - The "Polo" structure -->
     <nav>
         <div class="logo">
-            <!-- Simplified Polo Star SVG -->
-            <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#111" stroke="#333" stroke-width="4"/><path d="M50,15 L60,40 L85,45 L65,60 L70,85 L50,70 L30,85 L35,60 L15,45 L40,40 Z" fill="#fff"/></svg>
-            Polo
+            <svg viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="48" fill="#111" stroke="#333" stroke-width="4"/>
+                <path d="M50,15 L60,40 L85,45 L65,60 L70,85 L50,70 L30,85 L35,60 L15,45 L40,40 Z" fill="#fff"/>
+            </svg>
+            BuildWithIsmail
         </div>
-        
-        <ul class="nav-links">
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Projects</a></li>
-            <li><a href="#">Testimonials</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-
-        <a href="#" class="btn-free">
-            <!-- Plus Sparkle Icon -->
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"></path></svg>
-            Get for Free
-        </a>
     </nav>
 
-    <!-- 3. Floating Testimonial Cards (as seen in image) -->
-    <div class="floating-card card-top-right">
-        <div class="quote">"Working with him was a game changer!"</div>
-        <div class="name">- pranavnb</div>
-    </div>
-
-    <div class="floating-card card-bottom-right">
-        <div class="quote">"We increased our conversions by 200%"</div>
-        <div class="name">- vijaynb</div>
-    </div>
-
-    <!-- 4. Hero Content - Your customized typewriter -->
     <div class="hero-content">
         <h1>Hi, I’m BuildWithIsmail</h1>
         <div class="type-wrap">
@@ -249,7 +150,6 @@
         </div>
     </div>
 
-    <!-- 5. TYPEWRITER LOGIC -->
     <script>
         const textElement = document.getElementById('typewriter');
         const words = ["Developer", "Ui/Ux Designer", "Graphic Designer", "Motion Designer"];
@@ -260,7 +160,6 @@
         function type() {
             const currentWord = words[wordIndex];
             
-            // Handle text string
             if (isDeleting) {
                 textElement.textContent = currentWord.substring(0, charIndex - 1);
                 charIndex--;
@@ -269,13 +168,11 @@
                 charIndex++;
             }
 
-            // Typing speed logic
             let typeSpeed = isDeleting ? 60 : 150;
 
-            // Logic for switching words
             if (!isDeleting && charIndex === currentWord.length) {
                 isDeleting = true;
-                typeSpeed = 2500; // Pause at the end of the word
+                typeSpeed = 2500; 
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 wordIndex = (wordIndex + 1) % words.length;
@@ -285,7 +182,6 @@
             setTimeout(type, typeSpeed);
         }
 
-        // Run when page is ready
         window.onload = type;
     </script>
 </body>
