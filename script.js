@@ -1,6 +1,6 @@
 // script.js
 const textElement = document.getElementById('typewriter');
-const words = ["Developer", "Ui/Ux Designer", "Graphic Designer", "Motion Designer"];
+const words = ["Developer", "Ui/Ux Designer", "Graphic Designer", "Motion Designer", "I can be anything!"];
 let wordIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
