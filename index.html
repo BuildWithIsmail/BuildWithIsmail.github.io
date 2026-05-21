@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BuildWithIsmail | Portfolio</title>
     <style>
-        /* 1. FOUNDATION & APPLE FONT (SAN FRANCISCO) */
+        /* 1. FOUNDATION & DARK RED BRANDING */
         :root {
             --bg-color: #030303; 
             --nav-bg: #0A0A0A; 
             --text-main: #FFFFFF;
             --text-dim: #888888;
-            --accent: #007AFF; 
+            /* Precise Dark Red matching the RISE asset */
+            --accent-red: #660000; 
+            --accent-glow: rgba(102, 0, 0, 0.25);
             --nav-border: #1a1a1a; 
         }
 
@@ -32,16 +34,21 @@
             position: relative;
         }
 
-        /* 2. THE SILKY BACKGROUND */
+        /* 2. SILKY DARK RED BACKGROUND MESH */
         .background-blob {
             position: absolute;
-            width: 800px;
-            height: 800px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(0, 122, 255, 0.12) 0%, rgba(255, 255, 255, 0) 60%);
-            filter: blur(140px);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: -2;
-            animation: moveBlob 20s ease-in-out infinite alternate;
+            /* Blended deep red radial spheres for a liquid silk look */
+            background-image: 
+                radial-gradient(at 10% 10%, rgba(102, 0, 0, 0.3) 0, transparent 55%), 
+                radial-gradient(at 90% 10%, rgba(139, 0, 0, 0.2) 0, transparent 50%), 
+                radial-gradient(at 50% 90%, rgba(77, 0, 0, 0.35) 0, transparent 60%);
+            filter: blur(100px);
+            animation: moveBlob 15s ease-in-out infinite alternate;
         }
 
         .grain-overlay {
@@ -57,11 +64,11 @@
         }
 
         @keyframes moveBlob {
-            0% { transform: scale(1) translate(-10%, -10%); }
-            100% { transform: scale(1.2) translate(5%, 5%); }
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.1) translate(2%, 2%); }
         }
 
-        /* 3. MINIMAL NAVIGATION BAR */
+        /* 3. MODERN NAVIGATION BAR WITH LOGO AND ABOUT */
         nav {
             position: absolute;
             top: 30px;
@@ -69,27 +76,52 @@
             transform: translateX(-50%);
             background-color: var(--nav-bg);
             border: 1px solid var(--nav-border);
-            padding: 12px 30px;
+            padding: 10px 24px;
             border-radius: 40px;
             display: flex;
             align-items: center;
-            width: fit-content;
+            justify-content: space-between;
+            width: clamp(300px, 90%, 500px); 
             z-index: 20;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
-        .logo {
+        .logo-container {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            letter-spacing: -0.04em;
+            height: 32px;
         }
 
-        .logo svg { width: 24px; height: 24px; fill: white; }
+        .logo-container img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5));
+        }
 
-        /* 4. HERO CONTENT & TYPEWRITER */
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .btn-about {
+            text-decoration: none;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .btn-about:hover {
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.03);
+            border-color: var(--nav-border);
+        }
+
+        /* 4. HERO CONTENT & TYPOGRAPHY */
         .hero-content {
             text-align: center;
             z-index: 10;
@@ -97,7 +129,7 @@
         }
 
         h1 {
-            font-size: clamp(2.5rem, 10vw, 4.5rem); 
+            font-size: clamp(2.5rem, 9vw, 4.5rem); 
             letter-spacing: -0.05em;
             font-weight: 700;
             margin: 0;
@@ -114,17 +146,19 @@
             letter-spacing: -0.02em;
         }
 
+        /* Dark Red Typewriter Text & Cursor */
         #typewriter {
-            color: #fff;
+            color: var(--accent-red);
             font-weight: 600;
-            border-right: 3px solid var(--accent);
+            border-right: 3px solid var(--accent-red);
             padding-right: 10px;
             animation: blink 0.8s step-end infinite;
+            text-shadow: 0 0 20px rgba(102, 0, 0, 0.5); /* Subtle glow */
         }
 
         @keyframes blink {
             from, to { border-color: transparent }
-            50% { border-color: var(--accent); }
+            50% { border-color: var(--accent-red); }
         }
     </style>
 </head>
@@ -134,12 +168,11 @@
     <div class="grain-overlay"></div>
 
     <nav>
-        <div class="logo">
-            <svg viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="48" fill="#111" stroke="#333" stroke-width="4"/>
-                <path d="M50,15 L60,40 L85,45 L65,60 L70,85 L50,70 L30,85 L35,60 L15,45 L40,40 Z" fill="#fff"/>
-            </svg>
-            BuildWithIsmail
+        <div class="logo-container">
+            <img src="image.png" alt="RISE Logo">
+        </div>
+        <div class="nav-links">
+            <a href="#about" class="btn-about">About</a>
         </div>
     </nav>
 
@@ -152,7 +185,7 @@
 
     <script>
         const textElement = document.getElementById('typewriter');
-        const words = ["Developer", "Ui/Ux Designer", "Graphic Designer", "Motion Designer", "Anything"];
+        const words = ["Developer", "Ui/Ux Designer", "Graphic Designer", "Motion Designer"];
         let wordIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
@@ -172,7 +205,7 @@
 
             if (!isDeleting && charIndex === currentWord.length) {
                 isDeleting = true;
-                typeSpeed = 2500; 
+                typeSpeed = 2500; /* Time the full word stays on screen */
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 wordIndex = (wordIndex + 1) % words.length;
