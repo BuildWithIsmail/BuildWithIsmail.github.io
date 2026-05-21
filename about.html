@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | BuildWithIsmail</title>
+    <style>
+        /* FOUNDATION & BRANDING MATCHING INDEX.HTML */
+        :root {
+            --bg-color: #030303; 
+            --nav-bg: #0A0A0A; 
+            --text-main: #FFFFFF;
+            --text-dim: #888888;
+            --accent-red: #660000; 
+            --accent-glow: rgba(102, 0, 0, 0.25);
+            --nav-border: #1a1a1a; 
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+            min-height: 100vh;
+            width: 100vw;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* SILKY DARK RED BACKGROUND MESH */
+        .background-blob {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background-image: 
+                radial-gradient(at 10% 10%, rgba(102, 0, 0, 0.3) 0, transparent 55%), 
+                radial-gradient(at 90% 10%, rgba(139, 0, 0, 0.2) 0, transparent 50%), 
+                radial-gradient(at 50% 90%, rgba(77, 0, 0, 0.35) 0, transparent 60%);
+            filter: blur(100px);
+            animation: moveBlob 15s ease-in-out infinite alternate;
+        }
+
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.04;
+            pointer-events: none;
+            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+        }
+
+        @keyframes moveBlob {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.1) translate(2%, 2%); }
+        }
+
+        /* FIXED NAVIGATION BAR */
+        nav {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(10, 10, 10, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--nav-border);
+            padding: 10px 24px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: clamp(300px, 90%, 500px); 
+            z-index: 100;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            height: 32px;
+            cursor: pointer;
+        }
+
+        .logo-container img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5));
+        }
+
+        .btn-home {
+            text-decoration: none;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .btn-home:hover {
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: var(--nav-border);
+        }
+
+        /* ABOUT PAGE CONTENT BOX */
+        .about-wrapper {
+            margin-top: 100px;
+            padding: 40px 20px;
+            max-width: 650px;
+            text-align: center;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 3.5rem);
+            letter-spacing: -0.04em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(180deg, #FFFFFF 0%, #A1A1A1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bio-text {
+            font-size: clamp(1rem, 3vw, 1.15rem);
+            line-height: 1.7;
+            color: var(--text-dim);
+            font-weight: 400;
+            text-align: justify; /* Clean editorial layout */
+        }
+
+        /* Accent accentuation for specific focus words */
+        .highlight {
+            color: var(--accent-red);
+            font-weight: 500;
+            text-shadow: 0 0 10px rgba(102, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-blob"></div>
+    <div class="grain-overlay"></div>
+
+    <nav>
+        <div class="logo-container" onclick="window.location.href='index.html'">
+            <img src="image.png" alt="RISE Logo">
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="btn-home">Home</a>
+        </div>
+    </nav>
+
+    <div class="about-wrapper">
+        <h1>About Me</h1>
+        <p class="bio-text">
+            I am <span class="highlight">BuildWithIsmail</span>, a digital creator specializing in premium, highly interactive user experiences. By taking design inspiration from tools like Framer and translating it directly into raw, high-performance web code, I bridge the gap between imagination and execution.
+            <br><br>
+            My work focuses heavily on clean interfaces, smooth motion graphics, and unique brand identities like <span class="highlight">RISE</span>. Whether crafting complex user interfaces or developing fluid animations, I design setups intended to stand out.
+        </p>
+    </div>
+
+</body>
+</html>
