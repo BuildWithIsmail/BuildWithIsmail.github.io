@@ -3,24 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | BuildWithIsmail</title>
+    <title>About | Rise</title>
     <style>
-        /* FOUNDATION & BRANDING MATCHING INDEX.HTML */
+        /* 1. FOUNDATION & BRANDING MATCHING INDEX.HTML */
         :root {
             --bg-color: #030303; 
             --nav-bg: #0A0A0A; 
             --text-main: #FFFFFF;
             --text-dim: #888888;
             --accent-red: #660000; 
+            --bright-red: #A30000;
             --accent-glow: rgba(102, 0, 0, 0.25);
             --nav-border: #1a1a1a; 
         }
 
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            margin: 0;
-            padding: 0;
             background-color: var(--bg-color);
             color: var(--text-main);
             font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
@@ -33,7 +32,7 @@
             position: relative;
         }
 
-        /* SILKY DARK RED BACKGROUND MESH */
+        /* 2. SILKY DARK RED BACKGROUND MESH */
         .background-blob {
             position: fixed;
             top: 0;
@@ -66,7 +65,7 @@
             100% { transform: scale(1.1) translate(2%, 2%); }
         }
 
-        /* FIXED NAVIGATION BAR */
+        /* 3. FIXED NAVIGATION BAR */
         nav {
             position: fixed;
             top: 30px;
@@ -117,11 +116,11 @@
             border-color: var(--nav-border);
         }
 
-        /* ABOUT PAGE CONTENT BOX */
+        /* 4. ABOUT CONTENT BOX WITH TYPEWRITING FADE ANIMATION */
         .about-wrapper {
             margin-top: 100px;
-            padding: 40px 20px;
-            max-width: 650px;
+            padding: 40px 24px;
+            max-width: 680px;
             text-align: center;
             z-index: 10;
         }
@@ -130,25 +129,72 @@
             font-size: clamp(2.5rem, 8vw, 3.5rem);
             letter-spacing: -0.04em;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 28px;
             background: linear-gradient(180deg, #FFFFFF 0%, #A1A1A1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            
+            /* Title Fade-in animation */
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
         }
 
         .bio-text {
-            font-size: clamp(1rem, 3vw, 1.15rem);
-            line-height: 1.7;
+            font-size: clamp(1.05rem, 3.2vw, 1.2rem);
+            line-height: 1.75;
             color: var(--text-dim);
             font-weight: 400;
-            text-align: justify; /* Clean editorial layout */
+            text-align: justify;
         }
 
-        /* Accent accentuation for specific focus words */
+        /* Highlight classes to maintain the premium theme accents */
         .highlight {
-            color: var(--accent-red);
+            color: #ffffff;
             font-weight: 500;
-            text-shadow: 0 0 10px rgba(102, 0, 0, 0.3);
+        }
+        
+        .highlight-red {
+            color: #ff4d4d;
+            font-weight: 600;
+            text-shadow: 0 0 15px rgba(163, 0, 0, 0.4);
+        }
+
+        /* 5. TYPEWRITER FADE EFFECTS (Split into blocks for a clean editorial flow) */
+        .animate-p1, .animate-p2, .animate-p3 {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .animate-p1 {
+            animation: typeFade 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation-delay: 0.4s;
+        }
+
+        .animate-p2 {
+            margin-top: 20px;
+            animation: typeFade 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation-delay: 1.4s;
+        }
+
+        .animate-p3 {
+            margin-top: 24px;
+            font-size: clamp(1.2rem, 4vw, 1.4rem);
+            font-weight: 600;
+            color: #ffffff;
+            text-align: center;
+            animation: typeFade 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation-delay: 2.4s;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes typeFade {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -159,21 +205,30 @@
 
     <nav>
         <div class="logo-container" onclick="window.location.href='index.html'">
-            <img src="image.png" alt="RISE Logo">
+            <img src="rise.png" alt="RISE Logo">
         </div>
         <div class="nav-links">
             <a href="index.html" class="btn-home">Home</a>
         </div>
     </nav>
 
-    <div class="about-wrapper">
+    <main class="about-wrapper">
         <h1>About Me</h1>
-        <p class="bio-text">
-            I am <span class="highlight">BuildWithIsmail</span>, a digital creator specializing in premium, highly interactive user experiences. By taking design inspiration from tools like Framer and translating it directly into raw, high-performance web code, I bridge the gap between imagination and execution.
-            <br><br>
-            My work focuses heavily on clean interfaces, smooth motion graphics, and unique brand identities like <span class="highlight">RISE</span>. Whether crafting complex user interfaces or developing fluid animations, I design setups intended to stand out.
-        </p>
-    </div>
+        
+        <div class="bio-text">
+            <p class="animate-p1">
+                Hi, I’m <span class="highlight">Ismail</span>, a coding developer. To me, coding isn't just about typing characters into a machine—it's like <span class="highlight-red">building a whole new universe from scratch</span>. Every single line of code I write acts as a foundational block that controls exactly how elements move, look, and interact on the viewport. I am driven by learning new technologies and transforming complex concepts into fluid, optimized, and compelling digital environments.
+            </p>
+            
+            <p class="animate-p2">
+                That conviction is exactly why I built <span class="highlight">Rise</span>—a dedicated digital platform for immersive digital experiences where I introduce my core technical skill sets and structural projects to the world. Rise isn't just about passive consumption; it is focused entirely on <span class="highlight-red">innovation, continuous learning, and recreation</span>.
+            </p>
+            
+            <p class="animate-p3">
+                Now, let’s explore the universe together, shall we?
+            </p>
+        </div>
+    </main>
 
 </body>
 </html>
