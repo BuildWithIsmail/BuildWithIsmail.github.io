@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 | Lost in Space</title>
+    <style>
+        :root {
+            --bg-color: #030303; 
+            --text-main: #FFFFFF;
+            --text-dim: #888888;
+            --accent-red: #660000; 
+            --bright-red: #A30000;
+            --nav-border: #1a1a1a; 
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* BRAND SILKY MESH BACKGROUND */
+        .background-blob {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background-image: 
+                radial-gradient(at 50% 50%, rgba(102, 0, 0, 0.35) 0, transparent 50%);
+            filter: blur(100px);
+        }
+
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.04;
+            pointer-events: none;
+            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+        }
+
+        /* 404 CONTENT DISPLAY */
+        .error-wrapper {
+            text-align: center;
+            padding: 24px;
+            z-index: 10;
+        }
+
+        .error-code {
+            font-size: clamp(6rem, 20vw, 11rem);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.06em;
+            background: linear-gradient(180deg, #FFFFFF 20%, #444444 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: clamp(1.4rem, 4vw, 2rem);
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            margin-top: 10px;
+            margin-bottom: 16px;
+        }
+
+        p {
+            font-size: clamp(0.95rem, 3vw, 1.1rem);
+            color: var(--text-dim);
+            max-width: 440px;
+            line-height: 1.6;
+            margin: 0 auto 40px auto;
+        }
+
+        /* LINK BUTTONS */
+        .btn-home {
+            text-decoration: none;
+            background-color: #ffffff;
+            color: #000000;
+            padding: 14px 36px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            display: inline-block;
+        }
+
+        .btn-home:hover {
+            transform: scale(1.02);
+            opacity: 0.95;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-blob"></div>
+    <div class="grain-overlay"></div>
+
+    <div class="error-wrapper">
+        <div class="error-code">404</div>
+        <h2>Universe Not Found</h2>
+        <p>
+            It looks like you've drifted off course. The page or digital asset you are trying to reach doesn't exist out here.
+        </p>
+        <a href="index.html" class="btn-home">Return Home</a>
+    </div>
+
+</body>
+</html>
