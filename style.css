@@ -3,6 +3,12 @@
     --text-main: #ffffff;
     --text-dim: #a1a1a1;
     --accent: #007AFF;
+    
+    /* Dashboard Specific Brand Accents */
+    --nav-bg: #0A0A0A;
+    --nav-border: #1a1a1a;
+    --panel-glow: rgba(0, 122, 255, 0.15); /* Matched to your sleek blue accent */
+    --bright-red: #A30000;
 }
 
 body {
@@ -10,17 +16,21 @@ body {
     background-color: var(--bg-color);
     color: var(--text-main);
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     position: relative;
 }
 
-/* 1. THE SILKY MESH LAYER */
+/* ==========================================================================
+   1. VISUAL EFFECT ARCHITECTURE (The Silky Mesh Layer & Noise)
+   ========================================================================== */
 .silky-background {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -35,9 +45,8 @@ body {
     animation: moveBackground 15s ease infinite alternate;
 }
 
-/* 2. THE GRAIN/NOISE LAYER (The "Cryptix" Secret) */
 .grain-overlay {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -54,6 +63,16 @@ body {
     100% { transform: scale(1.1) translate(2%, 2%); }
 }
 
+/* ==========================================================================
+   2. HERO LAYOUT & COPYWRITING STYLES
+   ========================================================================== */
+.main-container {
+    text-align: center;
+    max-width: 750px;
+    padding: 160px 24px 40px 24px;
+    z-index: 10;
+}
+
 .hero-content {
     text-align: center;
     z-index: 10;
@@ -64,6 +83,9 @@ h1 {
     letter-spacing: -0.04em;
     font-weight: 700;
     margin: 0;
+    background: linear-gradient(180deg, #FFFFFF 0%, #A1A1A1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .type-wrap {
@@ -78,4 +100,294 @@ h1 {
     font-weight: 600;
     border-right: 2.5px solid var(--accent);
     padding-right: 8px;
+}
+
+.description {
+    font-size: clamp(1.05rem, 3vw, 1.25rem);
+    line-height: 1.6;
+    color: var(--text-dim);
+    font-weight: 400;
+    margin: 24px auto;
+    max-width: 620px;
+}
+
+.tagline {
+    font-size: clamp(1.2rem, 4vw, 1.6rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    margin-bottom: 40px;
+    text-shadow: 0 0 20px rgba(0, 122, 255, 0.3);
+}
+
+/* ==========================================================================
+   3. APPLE INTERFACE UTILITIES (Nav & CTA Groups)
+   ========================================================================== */
+nav {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--nav-bg);
+    border: 1px solid var(--nav-border);
+    padding: 10px 24px;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: clamp(300px, 90%, 500px); 
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    height: 32px;
+}
+
+.logo-container img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+.btn-about {
+    text-decoration: none;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.btn-about:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-color: var(--nav-border);
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 122, 255, 0.1);
+    border: 1px solid rgba(0, 122, 255, 0.25);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: #3399FF;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+}
+
+.status-badge span {
+    color: #fff;
+    opacity: 0.6;
+}
+
+.cta-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 60px;
+}
+
+.btn-white {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 14px 32px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-white:hover {
+    transform: scale(1.02);
+    opacity: 0.95;
+}
+
+.btn-dark {
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--nav-border);
+    color: #ffffff;
+    padding: 14px 32px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-dark:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #444;
+}
+
+/* ==========================================================================
+   4. SYSTEM MATRIX CONTROL STYLES (Interactive Component)
+   ========================================================================== */
+.matrix-section {
+    margin-top: 40px;
+    width: 100%;
+    text-align: center;
+}
+
+.matrix-title {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    margin-bottom: 12px;
+    background: linear-gradient(180deg, #FFFFFF 0%, #888888 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.matrix-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    margin-bottom: 40px;
+}
+
+.matrix-box {
+    background-color: var(--nav-bg);
+    border: 1px solid var(--nav-border);
+    border-radius: 20px;
+    max-width: 650px;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.matrix-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--nav-border);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.matrix-tab {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 16px;
+    color: var(--text-dim);
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-right: 1px solid var(--nav-border);
+}
+
+.matrix-tab:last-child {
+    border-right: none;
+}
+
+.matrix-tab:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.matrix-tab.active {
+    color: #ffffff;
+    background: var(--panel-glow);
+}
+
+.tab-indicator {
+    width: 6px;
+    height: 6px;
+    background-color: transparent;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.matrix-tab.active .tab-indicator {
+    background-color: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+}
+
+.matrix-display {
+    padding: 32px;
+    text-align: left;
+    min-height: 250px;
+    position: relative;
+}
+
+.matrix-panel {
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+}
+
+.matrix-panel.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 24px;
+}
+
+.terminal-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #222;
+}
+
+.matrix-panel.active .panel-header .terminal-dot:nth-child(1) { 
+    background-color: var(--accent); 
+}
+
+.panel-meta {
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: #444;
+    margin-left: 8px;
+}
+
+.panel-body h3 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+}
+
+.panel-body p {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tech-tags span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--nav-border);
+    padding: 6px 12px;
+    border-radius: 30px;
+    color: #cccccc;
 }
