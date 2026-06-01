@@ -32,7 +32,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             position: relative;
         }
 
@@ -92,7 +92,7 @@
 
         /* 4. PREMIUM NAVIGATION BAR WITH IMAGE LOGO */
         nav {
-            position: absolute;
+            position: fixed;
             top: 30px;
             left: 50%;
             transform: translateX(-50%);
@@ -142,7 +142,7 @@
         .main-container {
             text-align: center;
             max-width: 750px;
-            padding: 140px 24px 60px 24px;
+            padding: 160px 24px 40px 24px;
             z-index: 10;
         }
 
@@ -209,12 +209,13 @@
             text-shadow: 0 0 20px rgba(163, 0, 0, 0.4);
         }
 
-        /* 6. APPLE STYLE CALL-TO-ACTION BUTTONS */
+        /* APPLE STYLE CALL-TO-ACTION BUTTONS */
         .cta-group {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 16px;
+            margin-bottom: 40px;
         }
 
         .btn-white {
@@ -249,14 +250,178 @@
             background-color: rgba(255, 255, 255, 0.1);
             border-color: #444;
         }
+
+        /* 6. SKILLS MATRIX SECTION STYLING */
+        .matrix-section {
+            margin-top: 60px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .matrix-title {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            margin-bottom: 12px;
+            background: linear-gradient(180deg, #FFFFFF 0%, #888888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .matrix-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            margin-bottom: 40px;
+        }
+
+        .matrix-box {
+            background-color: var(--nav-bg);
+            border: 1px solid var(--nav-border);
+            border-radius: 20px;
+            max-width: 650px;
+            margin: 0 auto;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Nav Tabs */
+        .matrix-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--nav-border);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .matrix-tab {
+            flex: 1;
+            background: none;
+            border: none;
+            padding: 16px;
+            color: var(--text-dim);
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-right: 1px solid var(--nav-border);
+        }
+
+        .matrix-tab:last-child {
+            border-right: none;
+        }
+
+        .matrix-tab:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .matrix-tab.active {
+            color: #ffffff;
+            background: rgba(102, 0, 0, 0.15);
+        }
+
+        /* Active Status Tab Dot indicator */
+        .tab-indicator {
+            width: 6px;
+            height: 6px;
+            background-color: transparent;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .matrix-tab.active .tab-indicator {
+            background-color: #ff4d4d;
+            box-shadow: 0 0 10px #ff4d4d;
+        }
+
+        /* Panels */
+        .matrix-display {
+            padding: 32px;
+            text-align: left;
+            min-height: 250px;
+            position: relative;
+        }
+
+        .matrix-panel {
+            display: none;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+
+        .matrix-panel.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Window UI elements styling */
+        .panel-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 24px;
+        }
+
+        .terminal-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #222;
+        }
+
+        .matrix-panel.active .panel-header .terminal-dot:nth-child(1) { background-color: #ff4d4d; }
+
+        .panel-meta {
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: #444;
+            margin-left: 8px;
+        }
+
+        .panel-body h3 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .panel-body p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        /* Framework tags style */
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-tags span {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--nav-border);
+            padding: 6px 12px;
+            border-radius: 30px;
+            color: #cccccc;
+        }
     </style>
 </head>
 <body>
 
+    <!-- Ambient moving layout aesthetics -->
     <div class="animated-gradient-bg"></div>
     <div class="ray-grid-overlay"></div>
     <div class="grain-overlay"></div>
 
+    <!-- Navigation Area -->
     <nav>
         <div class="logo-container">
             <img src="rise.png" alt="RISE Logo">
@@ -266,11 +431,14 @@
         </div>
     </nav>
 
+    <!-- Main Hero Presentation -->
     <main class="main-container">
+        <!-- Premium Header Badge -->
         <div class="status-badge">
             <span>New:</span> Under Construction <div class="arrow-icon"></div>
         </div>
 
+        <!-- Headings and Content -->
         <h1>Time To Rise</h1>
         
         <p class="description">
@@ -279,11 +447,111 @@
         
         <div class="tagline">Let’s Explore the future</div>
 
+        <!-- Interactive CTA Elements -->
         <div class="cta-group">
             <a href="#" class="btn-white">Explore Now!</a>
             <a href="#" class="btn-dark">Learn More</a>
         </div>
+
+        <!-- INTERACTIVE SKILLS & INNOVATION MATRIX -->
+        <section class="matrix-section">
+            <h2 class="matrix-title">System Capabilities</h2>
+            <p class="matrix-subtitle">Click an environment below to initialize and explore my core skill sets.</p>
+
+            <div class="matrix-box">
+                <!-- Interactive Navigation Tabs -->
+                <div class="matrix-tabs">
+                    <button class="matrix-tab active" onclick="switchMatrix(event, 'dev-env')">
+                        <span class="tab-indicator"></span> Development
+                    </button>
+                    <button class="matrix-tab" onclick="switchMatrix(event, 'uiux-env')">
+                        <span class="tab-indicator"></span> UI/UX Design
+                    </button>
+                    <button class="matrix-tab" onclick="switchMatrix(event, 'design-env')">
+                        <span class="tab-indicator"></span> Graphic Design
+                    </button>
+                </div>
+
+                <!-- Dynamic Content Display Windows -->
+                <div class="matrix-display">
+                    <!-- Development Panel -->
+                    <div id="dev-env" class="matrix-panel active">
+                        <div class="panel-header">
+                            <span class="terminal-dot"></span>
+                            <span class="terminal-dot"></span>
+                            <span class="terminal-dot"></span>
+                            <span class="panel-meta">ismail // core-capabilities.json</span>
+                        </div>
+                        <div class="panel-body">
+                            <h3>Building Digital Universes</h3>
+                            <p>Writing highly clean, fluid, and optimized code to construct entire front-end environments and mechanical script systems from the ground up.</p>
+                            <div class="tech-tags">
+                                <span>HTML5 / CSS3</span>
+                                <span>SVG Animation</span>
+                                <span>Luau Scripting</span>
+                                <span>GitHub Architecture</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- UI/UX Panel -->
+                    <div id="uiux-env" class="matrix-panel">
+                        <div class="panel-header">
+                            <span class="terminal-dot"></span>
+                            <span class="terminal-dot"></span>
+                            <span class="terminal-dot"></span>
+                            <span class="panel-meta">ismail // interface-layouts.config</span>
+                        </div>
+                        <div class="panel-body">
+                            <h3>Premium Human Interfaces</h3>
+                            <p>Designing minimal, high-end layouts deeply inspired by premium tech aesthetics, maximizing responsiveness, screen interaction, and raw visual speed.</p>
+                            <div class="tech-tags">
+                                <span>Apple-Inspired Aesthetic</span>
+                                <span>Typography Hierarchy</span>
+                                <span>Responsive Wireframing</span>
+                                <span>Interaction Physics</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Graphic Design Panel -->
+                    <div id="design-env" class="matrix-panel">
+                        <div class="panel-header">
+                            <span class="terminal-dot"></span>
+                            <span class="terminal-dot"></span>
+                            <span class="terminal-dot"></span>
+                            <span class="panel-meta">ismail // vector-branding.assets</span>
+                        </div>
+                        <div class="panel-body">
+                            <h3>Visual Identity & Innovation</h3>
+                            <p>Recreating, innovating, and vectorizing crisp visual assets, distinct digital branding concepts, and precision-styled logo aesthetics.</p>
+                            <div class="tech-tags">
+                                <span>Vector Logos</span>
+                                <span>Brand Systems</span>
+                                <span>Visual Typography</span>
+                                <span>Asset Optimization</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
+    <!-- Swapping Logic Script -->
+    <script>
+        function switchMatrix(event, panelId) {
+            const tabs = document.querySelectorAll('.matrix-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            const panels = document.querySelectorAll('.matrix-panel');
+            panels.forEach(panel => panel.classList.remove('active'));
+
+            event.currentTarget.classList.add('active');
+            
+            const targetPanel = document.getElementById(panelId);
+            targetPanel.classList.add('active');
+        }
+    </script>
 </body>
 </html>
