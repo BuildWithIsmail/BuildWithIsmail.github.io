@@ -1,34 +1,25 @@
-// script.js
-const textElement = document.getElementById('typewriter');
-const words = ["Developer", "Ui/Ux Designer", "Graphic Designer", "Motion Designer", "Anything"];
-let wordIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-let typeSpeed = 100;
+// ==========================================================================
+// 1. SYSTEM MATRIX NAVIGATION CONTROL
+// ==========================================================================
+function switchMatrix(event, panelId) {
+    // Select and clear active states from all capability tabs
+    const tabs = document.querySelectorAll('.matrix-tab');
+    tabs.forEach(tab => {
+        tab.classList.remove('active');
+    });
 
-function type() {
-    const currentWord = words[wordIndex];
+    // Select and hide all information display panels
+    const panels = document.querySelectorAll('.matrix-panel');
+    panels.forEach(panel => {
+        panel.classList.remove('active');
+    });
+
+    // Apply the active style accent to the newly clicked tab
+    event.currentTarget.classList.add('active');
     
-    if (isDeleting) {
-        textElement.textContent = currentWord.substring(0, charIndex - 1);
-        charIndex--;
-        typeSpeed = 50;
-    } else {
-        textElement.textContent = currentWord.substring(0, charIndex + 1);
-        charIndex++;
-        typeSpeed = 150;
+    // Mount and reveal the targeted environment viewport panel
+    const targetPanel = document.getElementById(panelId);
+    if (targetPanel) {
+        targetPanel.classList.add('active');
     }
-
-    if (!isDeleting && charIndex === currentWord.length) {
-        isDeleting = true;
-        typeSpeed = 2000; // Pause at the end
-    } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        wordIndex = (wordIndex + 1) % words.length;
-        typeSpeed = 500;
-    }
-
-    setTimeout(type, typeSpeed);
 }
-
-document.addEventListener('DOMContentLoaded', type);
