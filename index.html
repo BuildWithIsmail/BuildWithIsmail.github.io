@@ -5,79 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Time To Rise</title>
     <style>
-        /* 1. BRAND VARIABLES & BASE ACCENTS */
         :root {
+            --bg-color: #030303; /* Slightly deeper black */
+            --text-main: #ffffff;
+            --text-dim: #a1a1a1;
+            --accent: #007AFF;
             --bg-dark: #030303;
             --nav-bg: #0A0A0A;
-            --text-main: #FFFFFF;
-            --text-dim: #888888;
             --accent-red: #660000;
             --bright-red: #A30000;
             --nav-border: #1a1a1a;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+            --panel-glow: rgba(0, 122, 255, 0.15); /* Sleek matching blue glow */
         }
 
         body {
-            background-color: var(--bg-dark);
+            margin: 0;
+            background-color: var(--bg-color);
             color: var(--text-main);
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
             min-height: 100vh;
             width: 100vw;
             overflow-x: hidden;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: flex-start;
+            align-items: center;
             position: relative;
         }
 
-        /* 2. DYNAMIC ANIMATED GRADIENT BACKGROUND */
-        .animated-gradient-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -3;
-            background-image: 
-                radial-gradient(at 20% 20%, rgba(102, 0, 0, 0.4) 0, transparent 50%), 
-                radial-gradient(at 80% 30%, rgba(139, 0, 0, 0.25) 0, transparent 45%), 
-                radial-gradient(at 50% 80%, rgba(50, 0, 0, 0.5) 0, transparent 60%);
-            background-size: 200% 200%;
-            filter: blur(80px);
-            animation: flowGradients 12s ease-in-out infinite alternate;
-        }
-
-        @keyframes flowGradients {
-            0% { background-position: 0% 0%; transform: scale(1); }
-            50% { background-position: 50% 100%; transform: scale(1.05); }
-            100% { background-position: 100% 50%; transform: scale(1); }
-        }
-
-        /* 3. TECHNO TECH-RAYS BACKGROUND OVERLAY */
-        .ray-grid-overlay {
+        /* 1. THE SILKY MESH LAYER */
+        .silky-background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -2;
-            opacity: 0.15;
-            pointer-events: none;
-            background: repeating-conic-gradient(
-                from 0deg at 50% -20%, 
-                transparent 0deg 2deg, 
-                var(--bright-red) 3deg 4deg
-            );
-            mask-image: radial-gradient(circle at 50% 30%, black 20%, transparent 80%);
-            -webkit-mask-image: radial-gradient(circle at 50% 30%, black 20%, transparent 80%);
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(210,100%,20%,0.3) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(255,100%,20%,0.3) 0, transparent 50%), 
+                radial-gradient(at 50% 100%, hsla(210,100%,15%,0.4) 0, transparent 50%);
+            filter: blur(80px); /* Blurs the gradients together for a "silk" feel */
+            animation: moveBackground 15s ease infinite alternate;
         }
 
+        /* 2. THE GRAIN/NOISE LAYER (The "Cryptix" Secret) */
         .grain-overlay {
             position: fixed;
             top: 0;
@@ -85,12 +58,47 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.03;
+            opacity: 0.04; /* Very subtle */
             pointer-events: none;
             background-image: url("https://grainy-gradients.vercel.app/noise.svg");
         }
 
-        /* 4. PREMIUM NAVIGATION BAR WITH IMAGE LOGO */
+        /* Subtle movement for the silk effect */
+        @keyframes moveBackground {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1) translate(2%, 2%); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            letter-spacing: -0.04em;
+            font-weight: 700;
+            margin: 0;
+            background: linear-gradient(180deg, #FFFFFF 0%, #A1A1A1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .type-wrap {
+            font-size: 1.6rem;
+            color: var(--text-dim);
+            margin-top: 15px;
+            font-weight: 400;
+        }
+
+        #typewriter {
+            color: #fff;
+            font-weight: 600;
+            border-right: 2.5px solid var(--accent);
+            padding-right: 8px;
+        }
+
+        /* PREMIUM NAVIGATION BAR WITH IMAGE LOGO */
         nav {
             position: fixed;
             top: 30px;
@@ -118,7 +126,7 @@
             height: 100%;
             width: auto;
             object-fit: contain;
-            filter: drop-shadow(0px 2px 8px rgba(102,0,0,0.4));
+            filter: drop-shadow(0px 2px 8px rgba(0, 122, 255, 0.2));
         }
 
         .btn-about {
@@ -138,27 +146,26 @@
             border-color: var(--nav-border);
         }
 
-        /* 5. MAIN HERO CONTAINER */
+        /* MAIN HERO CONTAINER SETUP */
         .main-container {
             text-align: center;
             max-width: 750px;
-            padding: 160px 24px 40px 24px;
+            padding: 160px 24px 60px 24px;
             z-index: 10;
         }
 
-        /* Futuristic Status Badge */
         .status-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(102, 0, 0, 0.15);
-            border: 1px solid rgba(163, 0, 0, 0.3);
+            background: rgba(0, 122, 255, 0.1);
+            border: 1px solid rgba(0, 122, 255, 0.25);
             padding: 6px 16px;
             border-radius: 20px;
             font-size: 0.75rem;
             font-weight: 600;
             letter-spacing: 0.08em;
-            color: #FF4D4D;
+            color: #3399FF;
             text-transform: uppercase;
             margin-bottom: 32px;
         }
@@ -177,24 +184,12 @@
             -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>') no-repeat center;
         }
 
-        /* High-End Clean Typography */
-        h1 {
-            font-size: clamp(2.8rem, 8vw, 5rem);
-            font-weight: 700;
-            line-height: 1.05;
-            letter-spacing: -0.04em;
-            margin-bottom: 24px;
-            background: linear-gradient(180deg, #FFFFFF 0%, #A1A1A1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
         .description {
             font-size: clamp(1.05rem, 3vw, 1.25rem);
             line-height: 1.6;
             color: var(--text-dim);
             font-weight: 400;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             max-width: 620px;
             margin-left: auto;
             margin-right: auto;
@@ -206,10 +201,10 @@
             letter-spacing: -0.02em;
             color: #ffffff;
             margin-bottom: 40px;
-            text-shadow: 0 0 20px rgba(163, 0, 0, 0.4);
+            text-shadow: 0 0 20px rgba(0, 122, 255, 0.3);
         }
 
-        /* APPLE STYLE CALL-TO-ACTION BUTTONS */
+        /* APPLE CTA BUTTON SYSTEM */
         .cta-group {
             display: flex;
             align-items: center;
@@ -251,7 +246,7 @@
             border-color: #444;
         }
 
-        /* 6. SKILLS MATRIX SECTION STYLING */
+        /* SYSTEM CAPABILITIES PRESENTATION CONTAINER */
         .matrix-section {
             margin-top: 60px;
             width: 100%;
@@ -284,7 +279,6 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
         }
 
-        /* Nav Tabs */
         .matrix-tabs {
             display: flex;
             border-bottom: 1px solid var(--nav-border);
@@ -320,10 +314,9 @@
 
         .matrix-tab.active {
             color: #ffffff;
-            background: rgba(102, 0, 0, 0.15);
+            background: var(--panel-glow);
         }
 
-        /* Active Status Tab Dot indicator */
         .tab-indicator {
             width: 6px;
             height: 6px;
@@ -333,11 +326,10 @@
         }
 
         .matrix-tab.active .tab-indicator {
-            background-color: #ff4d4d;
-            box-shadow: 0 0 10px #ff4d4d;
+            background-color: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
         }
 
-        /* Panels */
         .matrix-display {
             padding: 32px;
             text-align: left;
@@ -358,7 +350,6 @@
             transform: translateY(0);
         }
 
-        /* Window UI elements styling */
         .panel-header {
             display: flex;
             align-items: center;
@@ -373,7 +364,7 @@
             background-color: #222;
         }
 
-        .matrix-panel.active .panel-header .terminal-dot:nth-child(1) { background-color: #ff4d4d; }
+        .matrix-panel.active .panel-header .terminal-dot:nth-child(1) { background-color: var(--accent); }
 
         .panel-meta {
             font-family: monospace;
@@ -396,7 +387,6 @@
             margin-bottom: 24px;
         }
 
-        /* Framework tags style */
         .tech-tags {
             display: flex;
             flex-wrap: wrap;
@@ -413,15 +403,13 @@
             color: #cccccc;
         }
     </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Ambient moving layout aesthetics -->
-    <div class="animated-gradient-bg"></div>
-    <div class="ray-grid-overlay"></div>
+    <div class="silky-background"></div>
     <div class="grain-overlay"></div>
 
-    <!-- Navigation Area -->
     <nav>
         <div class="logo-container">
             <img src="rise.png" alt="RISE Logo">
@@ -431,35 +419,32 @@
         </div>
     </nav>
 
-    <!-- Main Hero Presentation -->
     <main class="main-container">
-        <!-- Premium Header Badge -->
+        
         <div class="status-badge">
             <span>New:</span> Under Construction <div class="arrow-icon"></div>
         </div>
 
-        <!-- Headings and Content -->
-        <h1>Time To Rise</h1>
-        
-        <p class="description">
-            Step into a high digital platform where websites transform into living environments. Introducing Rise a portal built entirely out of pure experience, interaction, and code motion.
-        </p>
-        
-        <div class="tagline">Let’s Explore the future</div>
+        <div class="hero-content">
+            <h1>Time To Rise</h1>
+            
+            <p class="description">
+                Step into a high digital platform where websites transform into living environments. Introducing Rise a portal built entirely out of pure experience, interaction, and code motion.
+            </p>
+            
+            <div class="tagline">Let’s Explore the future</div>
 
-        <!-- Interactive CTA Elements -->
-        <div class="cta-group">
-            <a href="#" class="btn-white">Explore Now!</a>
-            <a href="#" class="btn-dark">Learn More</a>
+            <div class="cta-group">
+                <a href="construction.html" class="btn-white">Explore Now!</a>
+                <a href="construction.html" class="btn-dark">Learn More</a>
+            </div>
         </div>
 
-        <!-- INTERACTIVE SKILLS & INNOVATION MATRIX -->
         <section class="matrix-section">
-            <h2 class="matrix-title">My Universe Capabilities</h2>
-            <p class="matrix-subtitle">Find out my skills by clicking an environment button below to explore my core skill sets and other materials.</p>
+            <h2 class="matrix-title">System Capabilities</h2>
+            <p class="matrix-subtitle">Click an environment below to initialize and explore my core skill sets.</p>
 
             <div class="matrix-box">
-                <!-- Interactive Navigation Tabs -->
                 <div class="matrix-tabs">
                     <button class="matrix-tab active" onclick="switchMatrix(event, 'dev-env')">
                         <span class="tab-indicator"></span> Development
@@ -472,9 +457,7 @@
                     </button>
                 </div>
 
-                <!-- Dynamic Content Display Windows -->
                 <div class="matrix-display">
-                    <!-- Development Panel -->
                     <div id="dev-env" class="matrix-panel active">
                         <div class="panel-header">
                             <span class="terminal-dot"></span>
@@ -483,10 +466,10 @@
                             <span class="panel-meta">ismail // core-capabilities.json</span>
                         </div>
                         <div class="panel-body">
-                            <h3>Building Digital Environments</h3>
-                            <p>Writing extreme high, fluid, and optimized code to construct entire code-end environments and mechanical script systems from my knowledge.</p>
+                            <h3>Building Digital Universes</h3>
+                            <p>Writing highly clean, fluid, and optimized code to construct entire front-end environments and mechanical script systems from the ground up.</p>
                             <div class="tech-tags">
-                                <span>HTML / CSS / JAVA</span>
+                                <span>HTML5 / CSS3</span>
                                 <span>SVG Animation</span>
                                 <span>Luau Scripting</span>
                                 <span>GitHub Architecture</span>
@@ -494,7 +477,6 @@
                         </div>
                     </div>
 
-                    <!-- UI/UX Panel -->
                     <div id="uiux-env" class="matrix-panel">
                         <div class="panel-header">
                             <span class="terminal-dot"></span>
@@ -503,18 +485,17 @@
                             <span class="panel-meta">ismail // interface-layouts.config</span>
                         </div>
                         <div class="panel-body">
-                            <h3>User Interface Designs</h3>
-                            <p>Designing minimal, high-end layouts inspired by Framer and designed by it making it responsiveness, screen interaction, and visual speed.</p>
+                            <h3>Premium Human Interfaces</h3>
+                            <p>Designing minimal, high-end layouts deeply inspired by premium tech aesthetics, maximizing responsiveness, screen interaction, and raw visual speed.</p>
                             <div class="tech-tags">
-                                <span>Apple Inteface Design</span>
-                                <span>Typography Effects</span>
+                                <span>Apple-Inspired Aesthetic</span>
+                                <span>Typography Hierarchy</span>
                                 <span>Responsive Wireframing</span>
                                 <span>Interaction Physics</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Graphic Design Panel -->
                     <div id="design-env" class="matrix-panel">
                         <div class="panel-header">
                             <span class="terminal-dot"></span>
@@ -538,20 +519,6 @@
         </section>
     </main>
 
-    <!-- Swapping Logic Script -->
-    <script>
-        function switchMatrix(event, panelId) {
-            const tabs = document.querySelectorAll('.matrix-tab');
-            tabs.forEach(tab => tab.classList.remove('active'));
-
-            const panels = document.querySelectorAll('.matrix-panel');
-            panels.forEach(panel => panel.classList.remove('active'));
-
-            event.currentTarget.classList.add('active');
-            
-            const targetPanel = document.getElementById(panelId);
-            targetPanel.classList.add('active');
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
