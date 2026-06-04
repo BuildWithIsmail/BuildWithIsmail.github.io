@@ -1,1 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Offline // RISE</title>
+    <style>
+        :root {
+            --bg-color: #030303;
+            --text-main: #ffffff;
+            --text-dim: #a1a1a1;
+            --accent: #A30000; /* Restored to Original Premium Red */
+            --bright-red: #FF4D4D;
+            --nav-bg: #0A0A0A;
+            --nav-border: #1a1a1a;
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Ambient Crimson Silky Mesh Background */
+        .silky-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(102, 0, 0, 0.3) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, rgba(139, 0, 0, 0.2) 0, transparent 50%), 
+                radial-gradient(at 50% 100%, rgba(50, 0, 0, 0.4) 0, transparent 50%);
+            filter: blur(80px);
+            animation: moveBackground 15s ease infinite alternate;
+        }
+
+        .grain-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.04;
+            pointer-events: none;
+            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+        }
+
+        @keyframes moveBackground {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05) translate(1%, 1%); }
+        }
+
+        /* Content Interface Layout */
+        .construction-container {
+            text-align: center;
+            padding: 24px;
+            max-width: 500px;
+            z-index: 10;
+        }
+
+        /* Red System Status Loader Badge */
+        .status-loader {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(102, 0, 0, 0.15);
+            border: 1px solid rgba(163, 0, 0, 0.3);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: var(--bright-red);
+            margin-bottom: 32px;
+        }
+
+        .pulse-dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--bright-red);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--bright-red);
+            animation: pulse 1.6s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 14px var(--bright-red); }
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            letter-spacing: -0.04em;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(180deg, #FFFFFF 0%, #A1A1A1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: var(--text-dim);
+            margin-bottom: 40px;
+        }
+
+        /* Apple Styled Action Return Control */
+        .btn-back {
+            display: inline-block;
+            background-color: #ffffff;
+            color: #000000;
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        }
+
+        .btn-back:hover {
+            transform: scale(1.02);
+            opacity: 0.95;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="silky-background"></div>
+    <div class="grain-overlay"></div>
+
+    <div class="construction-container">
+        <div class="status-loader">
+            <span class="pulse-dot"></span> INITIALIZING MODULE
+        </div>
+        
+        <h1>Expanding the Environment</h1>
+        
+        <p>This sector of Rise is currently under construction. Core system structures and motion interactive modules are being engineered behind the scenes.</p>
+        
+        <a href="index.html" class="btn-back">Return Home</a>
+    </div>
+
+</body>
+</html>
 
