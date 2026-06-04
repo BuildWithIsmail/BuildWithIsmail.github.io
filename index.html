@@ -9,13 +9,13 @@
             --bg-color: #030303; /* Slightly deeper black */
             --text-main: #ffffff;
             --text-dim: #a1a1a1;
-            --accent: #007AFF;
+            --accent: #A30000; /* Restored to Original Premium Red */
             --bg-dark: #030303;
             --nav-bg: #0A0A0A;
             --accent-red: #660000;
-            --bright-red: #A30000;
+            --bright-red: #FF4D4D;
             --nav-border: #1a1a1a;
-            --panel-glow: rgba(0, 122, 255, 0.15); /* Sleek matching blue glow */
+            --panel-glow: rgba(163, 0, 0, 0.15); /* Crimson interface glow */
         }
 
         body {
@@ -33,7 +33,7 @@
             position: relative;
         }
 
-        /* 1. THE SILKY MESH LAYER */
+        /* 1. THE CRIMSON SILKY MESH LAYER */
         .silky-background {
             position: fixed;
             top: 0;
@@ -43,9 +43,9 @@
             z-index: -2;
             background-color: var(--bg-color);
             background-image: 
-                radial-gradient(at 0% 0%, hsla(210,100%,20%,0.3) 0, transparent 50%), 
-                radial-gradient(at 100% 0%, hsla(255,100%,20%,0.3) 0, transparent 50%), 
-                radial-gradient(at 50% 100%, hsla(210,100%,15%,0.4) 0, transparent 50%);
+                radial-gradient(at 0% 0%, rgba(102, 0, 0, 0.3) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, rgba(139, 0, 0, 0.2) 0, transparent 50%), 
+                radial-gradient(at 50% 100%, rgba(50, 0, 0, 0.4) 0, transparent 50%);
             filter: blur(80px); /* Blurs the gradients together for a "silk" feel */
             animation: moveBackground 15s ease infinite alternate;
         }
@@ -126,7 +126,7 @@
             height: 100%;
             width: auto;
             object-fit: contain;
-            filter: drop-shadow(0px 2px 8px rgba(0, 122, 255, 0.2));
+            filter: drop-shadow(0px 2px 8px rgba(163, 0, 0, 0.4));
         }
 
         .btn-about {
@@ -158,14 +158,14 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(0, 122, 255, 0.1);
-            border: 1px solid rgba(0, 122, 255, 0.25);
+            background: rgba(102, 0, 0, 0.15);
+            border: 1px solid rgba(163, 0, 0, 0.3);
             padding: 6px 16px;
             border-radius: 20px;
             font-size: 0.75rem;
             font-weight: 600;
             letter-spacing: 0.08em;
-            color: #3399FF;
+            color: var(--bright-red);
             text-transform: uppercase;
             margin-bottom: 32px;
         }
@@ -201,7 +201,7 @@
             letter-spacing: -0.02em;
             color: #ffffff;
             margin-bottom: 40px;
-            text-shadow: 0 0 20px rgba(0, 122, 255, 0.3);
+            text-shadow: 0 0 20px rgba(163, 0, 0, 0.4);
         }
 
         /* APPLE CTA BUTTON SYSTEM */
