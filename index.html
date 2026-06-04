@@ -1,524 +1,394 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Time To Rise</title>
-    <style>
-        :root {
-            --bg-color: #030303; /* Slightly deeper black */
-            --text-main: #ffffff;
-            --text-dim: #a1a1a1;
-            --accent: #A30000; /* Restored to Original Premium Red */
-            --bg-dark: #030303;
-            --nav-bg: #0A0A0A;
-            --accent-red: #660000;
-            --bright-red: #FF4D4D;
-            --nav-border: #1a1a1a;
-            --panel-glow: rgba(163, 0, 0, 0.15); /* Crimson interface glow */
-        }
+:root {
+    --bg-color: #030303; /* Slightly deeper black */
+    --text-main: #ffffff;
+    --text-dim: #a1a1a1;
+    --accent: #A30000; /* Original Premium Red */
+    
+    /* Dashboard Specific Brand Accents */
+    --nav-bg: #0A0A0A;
+    --nav-border: #1a1a1a;
+    --panel-glow: rgba(163, 0, 0, 0.15); /* Crimson interface glow */
+    --bright-red: #FF4D4D;
+}
 
-        body {
-            margin: 0;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-            min-height: 100vh;
-            width: 100vw;
-            overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            position: relative;
-        }
+body {
+    margin: 0;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    min-height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+}
 
-        /* 1. THE CRIMSON SILKY MESH LAYER */
-        .silky-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            background-color: var(--bg-color);
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(102, 0, 0, 0.3) 0, transparent 50%), 
-                radial-gradient(at 100% 0%, rgba(139, 0, 0, 0.2) 0, transparent 50%), 
-                radial-gradient(at 50% 100%, rgba(50, 0, 0, 0.4) 0, transparent 50%);
-            filter: blur(80px); /* Blurs the gradients together for a "silk" feel */
-            animation: moveBackground 15s ease infinite alternate;
-        }
+/* ==========================================================================
+   1. VISUAL EFFECT ARCHITECTURE (The Crimson Mesh Layer & Noise)
+   ========================================================================== */
+.silky-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background-color: var(--bg-color);
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(102, 0, 0, 0.3) 0, transparent 50%), 
+        radial-gradient(at 100% 0%, rgba(139, 0, 0, 0.2) 0, transparent 50%), 
+        radial-gradient(at 50% 100%, rgba(50, 0, 0, 0.4) 0, transparent 50%);
+    filter: blur(80px); /* Blurs the gradients together for a "silk" feel */
+    animation: moveBackground 15s ease infinite alternate;
+}
 
-        /* 2. THE GRAIN/NOISE LAYER (The "Cryptix" Secret) */
-        .grain-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.04; /* Very subtle */
-            pointer-events: none;
-            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-        }
+.grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.04; /* Very subtle */
+    pointer-events: none;
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+}
 
-        /* Subtle movement for the silk effect */
-        @keyframes moveBackground {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.1) translate(2%, 2%); }
-        }
+/* Subtle movement for the silk effect */
+@keyframes moveBackground {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1) translate(2%, 2%); }
+}
 
-        .hero-content {
-            text-align: center;
-            z-index: 10;
-        }
+/* ==========================================================================
+   2. HERO LAYOUT & COPYWRITING STYLES
+   ========================================================================== */
+.main-container {
+    text-align: center;
+    max-width: 750px;
+    padding: 160px 24px 40px 24px;
+    z-index: 10;
+}
 
-        h1 {
-            font-size: 3.5rem;
-            letter-spacing: -0.04em;
-            font-weight: 700;
-            margin: 0;
-            background: linear-gradient(180deg, #FFFFFF 0%, #A1A1A1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+.hero-content {
+    text-align: center;
+    z-index: 10;
+}
 
-        .type-wrap {
-            font-size: 1.6rem;
-            color: var(--text-dim);
-            margin-top: 15px;
-            font-weight: 400;
-        }
+h1 {
+    font-size: 3.5rem;
+    letter-spacing: -0.04em;
+    font-weight: 700;
+    margin: 0;
+    background: linear-gradient(180deg, #FFFFFF 0%, #A1A1A1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
-        #typewriter {
-            color: #fff;
-            font-weight: 600;
-            border-right: 2.5px solid var(--accent);
-            padding-right: 8px;
-        }
+.type-wrap {
+    font-size: 1.6rem;
+    color: var(--text-dim);
+    margin-top: 15px;
+    font-weight: 400;
+}
 
-        /* PREMIUM NAVIGATION BAR WITH IMAGE LOGO */
-        nav {
-            position: fixed;
-            top: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--nav-bg);
-            border: 1px solid var(--nav-border);
-            padding: 10px 24px;
-            border-radius: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: clamp(300px, 90%, 500px); 
-            z-index: 100;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-        }
+#typewriter {
+    color: #fff;
+    font-weight: 600;
+    border-right: 2.5px solid var(--accent);
+    padding-right: 8px;
+}
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            height: 32px;
-        }
+.description {
+    font-size: clamp(1.05rem, 3vw, 1.25rem);
+    line-height: 1.6;
+    color: var(--text-dim);
+    font-weight: 400;
+    margin: 24px auto;
+    max-width: 620px;
+}
 
-        .logo-container img {
-            height: 100%;
-            width: auto;
-            object-fit: contain;
-            filter: drop-shadow(0px 2px 8px rgba(163, 0, 0, 0.4));
-        }
+.tagline {
+    font-size: clamp(1.2rem, 4vw, 1.6rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    margin-bottom: 40px;
+    text-shadow: 0 0 20px rgba(163, 0, 0, 0.4);
+}
 
-        .btn-about {
-            text-decoration: none;
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            font-weight: 500;
-            padding: 8px 16px;
-            border-radius: 20px;
-            transition: all 0.2s ease;
-            border: 1px solid transparent;
-        }
+/* ==========================================================================
+   3. APPLE INTERFACE UTILITIES (Nav & CTA Groups)
+   ========================================================================== */
+nav {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--nav-bg);
+    border: 1px solid var(--nav-border);
+    padding: 10px 24px;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: clamp(300px, 90%, 500px); 
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
 
-        .btn-about:hover {
-            color: #fff;
-            background-color: rgba(255, 255, 255, 0.03);
-            border-color: var(--nav-border);
-        }
+.logo-container {
+    display: flex;
+    align-items: center;
+    height: 32px;
+}
 
-        /* MAIN HERO CONTAINER SETUP */
-        .main-container {
-            text-align: center;
-            max-width: 750px;
-            padding: 160px 24px 60px 24px;
-            z-index: 10;
-        }
+.logo-container img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0px 2px 8px rgba(163, 0, 0, 0.4));
+}
 
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(102, 0, 0, 0.15);
-            border: 1px solid rgba(163, 0, 0, 0.3);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            color: var(--bright-red);
-            text-transform: uppercase;
-            margin-bottom: 32px;
-        }
+.btn-about {
+    text-decoration: none;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
 
-        .status-badge span {
-            color: #fff;
-            opacity: 0.6;
-        }
+.btn-about:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-color: var(--nav-border);
+}
 
-        .arrow-icon {
-            display: inline-flex;
-            width: 12px;
-            height: 12px;
-            background: currentColor;
-            mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>') no-repeat center;
-            -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>') no-repeat center;
-        }
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(102, 0, 0, 0.15);
+    border: 1px solid rgba(163, 0, 0, 0.3);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--bright-red);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+}
 
-        .description {
-            font-size: clamp(1.05rem, 3vw, 1.25rem);
-            line-height: 1.6;
-            color: var(--text-dim);
-            font-weight: 400;
-            margin-bottom: 24px;
-            max-width: 620px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+.status-badge span {
+    color: #fff;
+    opacity: 0.6;
+}
 
-        .tagline {
-            font-size: clamp(1.2rem, 4vw, 1.6rem);
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            color: #ffffff;
-            margin-bottom: 40px;
-            text-shadow: 0 0 20px rgba(163, 0, 0, 0.4);
-        }
+.cta-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 60px;
+}
 
-        /* APPLE CTA BUTTON SYSTEM */
-        .cta-group {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            margin-bottom: 40px;
-        }
+.btn-white {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 14px 32px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
 
-        .btn-white {
-            background-color: #ffffff;
-            color: #000000;
-            padding: 14px 32px;
-            border-radius: 30px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: transform 0.2s ease, opacity 0.2s ease;
-        }
+.btn-white:hover {
+    transform: scale(1.02);
+    opacity: 0.95;
+}
 
-        .btn-white:hover {
-            transform: scale(1.02);
-            opacity: 0.95;
-        }
+.btn-dark {
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--nav-border);
+    color: #ffffff;
+    padding: 14px 32px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
 
-        .btn-dark {
-            background-color: rgba(255, 255, 255, 0.06);
-            border: 1px solid var(--nav-border);
-            color: #ffffff;
-            padding: 14px 32px;
-            border-radius: 30px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: background 0.2s ease, border-color 0.2s ease;
-        }
+.btn-dark:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #444;
+}
 
-        .btn-dark:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-color: #444;
-        }
+/* ==========================================================================
+   4. SYSTEM MATRIX CONTROL STYLES (Interactive Component)
+   ========================================================================== */
+.matrix-section {
+    margin-top: 40px;
+    width: 100%;
+    text-align: center;
+}
 
-        /* SYSTEM CAPABILITIES PRESENTATION CONTAINER */
-        .matrix-section {
-            margin-top: 60px;
-            width: 100%;
-            text-align: center;
-        }
+.matrix-title {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    margin-bottom: 12px;
+    background: linear-gradient(180deg, #FFFFFF 0%, #888888 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
-        .matrix-title {
-            font-size: clamp(1.8rem, 5vw, 2.5rem);
-            font-weight: 700;
-            letter-spacing: -0.04em;
-            margin-bottom: 12px;
-            background: linear-gradient(180deg, #FFFFFF 0%, #888888 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+.matrix-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    margin-bottom: 40px;
+}
 
-        .matrix-subtitle {
-            font-size: 0.95rem;
-            color: var(--text-dim);
-            margin-bottom: 40px;
-        }
+.matrix-box {
+    background-color: var(--nav-bg);
+    border: 1px solid var(--nav-border);
+    border-radius: 20px;
+    max-width: 650px;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
 
-        .matrix-box {
-            background-color: var(--nav-bg);
-            border: 1px solid var(--nav-border);
-            border-radius: 20px;
-            max-width: 650px;
-            margin: 0 auto;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-        }
+.matrix-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--nav-border);
+    background: rgba(0, 0, 0, 0.2);
+}
 
-        .matrix-tabs {
-            display: flex;
-            border-bottom: 1px solid var(--nav-border);
-            background: rgba(0, 0, 0, 0.2);
-        }
+.matrix-tab {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 16px;
+    color: var(--text-dim);
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-right: 1px solid var(--nav-border);
+}
 
-        .matrix-tab {
-            flex: 1;
-            background: none;
-            border: none;
-            padding: 16px;
-            color: var(--text-dim);
-            font-family: inherit;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            border-right: 1px solid var(--nav-border);
-        }
+.matrix-tab:last-child {
+    border-right: none;
+}
 
-        .matrix-tab:last-child {
-            border-right: none;
-        }
+.matrix-tab:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.02);
+}
 
-        .matrix-tab:hover {
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.02);
-        }
+.matrix-tab.active {
+    color: #ffffff;
+    background: var(--panel-glow);
+}
 
-        .matrix-tab.active {
-            color: #ffffff;
-            background: var(--panel-glow);
-        }
+.tab-indicator {
+    width: 6px;
+    height: 6px;
+    background-color: transparent;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
 
-        .tab-indicator {
-            width: 6px;
-            height: 6px;
-            background-color: transparent;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
+.matrix-tab.active .tab-indicator {
+    background-color: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+}
 
-        .matrix-tab.active .tab-indicator {
-            background-color: var(--accent);
-            box-shadow: 0 0 10px var(--accent);
-        }
+.matrix-display {
+    padding: 32px;
+    text-align: left;
+    min-height: 250px;
+    position: relative;
+}
 
-        .matrix-display {
-            padding: 32px;
-            text-align: left;
-            min-height: 250px;
-            position: relative;
-        }
+.matrix-panel {
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+}
 
-        .matrix-panel {
-            display: none;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.4s ease;
-        }
+.matrix-panel.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
 
-        .matrix-panel.active {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
+.panel-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 24px;
+}
 
-        .panel-header {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 24px;
-        }
+.terminal-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #222;
+}
 
-        .terminal-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: #222;
-        }
+.matrix-panel.active .panel-header .terminal-dot:nth-child(1) { 
+    background-color: var(--accent); 
+}
 
-        .matrix-panel.active .panel-header .terminal-dot:nth-child(1) { background-color: var(--accent); }
+.panel-meta {
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: #444;
+    margin-left: 8px;
+}
 
-        .panel-meta {
-            font-family: monospace;
-            font-size: 0.75rem;
-            color: #444;
-            margin-left: 8px;
-        }
+.panel-body h3 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+}
 
-        .panel-body h3 {
-            font-size: 1.35rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-            letter-spacing: -0.02em;
-        }
+.panel-body p {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
 
-        .panel-body p {
-            color: var(--text-dim);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 24px;
-        }
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
 
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .tech-tags span {
-            font-size: 0.75rem;
-            font-weight: 600;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--nav-border);
-            padding: 6px 12px;
-            border-radius: 30px;
-            color: #cccccc;
-        }
-    </style>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <div class="silky-background"></div>
-    <div class="grain-overlay"></div>
-
-    <nav>
-        <div class="logo-container">
-            <img src="rise.png" alt="RISE Logo">
-        </div>
-        <div class="nav-links">
-            <a href="about.html" class="btn-about">About</a>
-        </div>
-    </nav>
-
-    <main class="main-container">
-        
-        <div class="status-badge">
-            <span>New:</span> Under Construction <div class="arrow-icon"></div>
-        </div>
-
-        <div class="hero-content">
-            <h1>Time To Rise</h1>
-            
-            <p class="description">
-                Step into a high digital platform where websites transform into living environments. Introducing Rise a portal built entirely out of pure experience, interaction, and code motion.
-            </p>
-            
-            <div class="tagline">Let’s Explore the future</div>
-
-            <div class="cta-group">
-                <a href="construction.html" class="btn-white">Explore Now!</a>
-                <a href="construction.html" class="btn-dark">Learn More</a>
-            </div>
-        </div>
-
-        <section class="matrix-section">
-            <h2 class="matrix-title">System Capabilities</h2>
-            <p class="matrix-subtitle">Click an environment below to initialize and explore my core skill sets.</p>
-
-            <div class="matrix-box">
-                <div class="matrix-tabs">
-                    <button class="matrix-tab active" onclick="switchMatrix(event, 'dev-env')">
-                        <span class="tab-indicator"></span> Development
-                    </button>
-                    <button class="matrix-tab" onclick="switchMatrix(event, 'uiux-env')">
-                        <span class="tab-indicator"></span> UI/UX Design
-                    </button>
-                    <button class="matrix-tab" onclick="switchMatrix(event, 'design-env')">
-                        <span class="tab-indicator"></span> Graphic Design
-                    </button>
-                </div>
-
-                <div class="matrix-display">
-                    <div id="dev-env" class="matrix-panel active">
-                        <div class="panel-header">
-                            <span class="terminal-dot"></span>
-                            <span class="terminal-dot"></span>
-                            <span class="terminal-dot"></span>
-                            <span class="panel-meta">ismail // core-capabilities.json</span>
-                        </div>
-                        <div class="panel-body">
-                            <h3>Building Digital Universes</h3>
-                            <p>Writing highly clean, fluid, and optimized code to construct entire front-end environments and mechanical script systems from the ground up.</p>
-                            <div class="tech-tags">
-                                <span>HTML5 / CSS3</span>
-                                <span>SVG Animation</span>
-                                <span>Luau Scripting</span>
-                                <span>GitHub Architecture</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="uiux-env" class="matrix-panel">
-                        <div class="panel-header">
-                            <span class="terminal-dot"></span>
-                            <span class="terminal-dot"></span>
-                            <span class="terminal-dot"></span>
-                            <span class="panel-meta">ismail // interface-layouts.config</span>
-                        </div>
-                        <div class="panel-body">
-                            <h3>Premium Human Interfaces</h3>
-                            <p>Designing minimal, high-end layouts deeply inspired by premium tech aesthetics, maximizing responsiveness, screen interaction, and raw visual speed.</p>
-                            <div class="tech-tags">
-                                <span>Apple-Inspired Aesthetic</span>
-                                <span>Typography Hierarchy</span>
-                                <span>Responsive Wireframing</span>
-                                <span>Interaction Physics</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="design-env" class="matrix-panel">
-                        <div class="panel-header">
-                            <span class="terminal-dot"></span>
-                            <span class="terminal-dot"></span>
-                            <span class="terminal-dot"></span>
-                            <span class="panel-meta">ismail // vector-branding.assets</span>
-                        </div>
-                        <div class="panel-body">
-                            <h3>Visual Identity & Innovation</h3>
-                            <p>Recreating, innovating, and vectorizing crisp visual assets, distinct digital branding concepts, and precision-styled logo aesthetics.</p>
-                            <div class="tech-tags">
-                                <span>Vector Logos</span>
-                                <span>Brand Systems</span>
-                                <span>Visual Typography</span>
-                                <span>Asset Optimization</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <script src="script.js"></script>
-</body>
-</html>
+.tech-tags span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--nav-border);
+    padding: 6px 12px;
+    border-radius: 30px;
+    color: #cccccc;
+}
