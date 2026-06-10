@@ -1,1 +1,120 @@
-we on epstien files
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time To Rise</title>
+    <style>
+        :root {
+            --bg-color: #030303; /* Slightly deeper black */
+            --text-main: #ffffff;
+            --text-dim: #a1a1a1;
+            --accent: #007AFF; /* Restored to Premium Apple Blue */
+            --bg-dark: #030303;
+            --nav-bg: #0A0A0A;
+            --nav-border: #1a1a1a;
+            --panel-glow: rgba(0, 122, 255, 0.15); /* Sleek matching blue glow */
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+            min-height: 100vh;
+            width: 100vw;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            position: relative;
+        }
+
+        /* 1. THE SILKY MESH LAYER */
+        .silky-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(210,100%,20%,0.3) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(255,100%,20%,0.3) 0, transparent 50%), 
+                radial-gradient(at 50% 100%, hsla(210,100%,15%,0.4) 0, transparent 50%);
+            filter: blur(80px); /* Blurs the gradients together for a "silk" feel */
+            animation: moveBackground 15s ease infinite alternate;
+        }
+
+        /* 2. THE GRAIN/NOISE LAYER */
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.04; /* Very subtle */
+            pointer-events: none;
+            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+        }
+
+        /* Subtle movement for the silk effect */
+        @keyframes moveBackground {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1) translate(2%, 2%); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            letter-spacing: -0.04em;
+            font-weight: 700;
+            margin: 0;
+            background: linear-gradient(180deg, #FFFFFF 0%, #A1A1A1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* TYPEWRITER WRAPPER STYLES */
+        .type-wrap {
+            font-size: 1.6rem;
+            color: var(--text-dim);
+            margin-top: 15px;
+            font-weight: 400;
+        }
+
+        #typewriter {
+            color: #fff;
+            font-weight: 600;
+            border-right: 2.5px solid var(--accent);
+            padding-right: 8px;
+        }
+
+        /* PREMIUM NAVIGATION BAR WITH IMAGE LOGO */
+        nav {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--nav-bg);
+            border: 1px solid var(--nav-border);
+            padding: 10px 24px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: clamp(300px, 90%, 500px); 
+            z-index: 100;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items
